@@ -1,6 +1,6 @@
 # godot-flake
 
-Official Godot 4.7.2 editor Linux binary from [godot-builds](https://github.com/godotengine/godot-builds), wrapped in an FHS environment with the display/audio runtime libraries (X11, Wayland, fontconfig, ALSA, PulseAudio), a desktop entry, and the official icon. Nothing gets compiled.
+Official Godot 4.8-beta1 Linux binary from [godot-builds](https://github.com/godotengine/godot-builds), wrapped in an FHS environment with the display/audio runtime libraries (X11, Wayland, fontconfig, ALSA, PulseAudio), a desktop entry, and the official icon. Nothing gets compiled.
 
 Run:
 
@@ -22,4 +22,4 @@ environment.systemPackages = [
 ];
 ```
 
-To bump the version, change `version` in `flake.nix` along with the sha512 of the matching release zip.
+To bump the version, change `version` in `flake.nix` along with the hash of the matching release zip.

@@ -9,10 +9,10 @@
   }: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-    version = "4.7.2-stable";
+    version = "4.8-beta1";
     src = pkgs.fetchurl {
       url = "https://github.com/godotengine/godot-builds/releases/download/${version}/Godot_v${version}_linux.x86_64.zip";
-      sha512 = "9aa00f7a605200940bce3027a567b782f49bd8e940dd06ae9e987bd65aee1b1467edd56ed84fcdcbdd44354bf613bdbb4e5d2913e925850368e150c59ed54c65";
+      hash = "sha256-GZstag2qOnSmlzVvMcMzR/mX9lJYun3QfKjBEQdXkn0=";
     };
     editor = pkgs.stdenv.mkDerivation {
       pname = "godot-editor";
@@ -44,10 +44,10 @@
   in {
     packages.${system}.default = pkgs.symlinkJoin {
       name = "godot";
-      version = "4.7.2";
+      inherit version;
       paths = [(pkgs.buildFHSEnv {
         name = "godot";
-        version = "4.7.2";
+        inherit version;
         runScript = "godot";
         targetPkgs = pkgs: [
           editor
@@ -74,6 +74,10 @@
         install -Dm444 ${desktop}/share/applications/godot.desktop $out/share/applications/godot.desktop
         install -Dm444 ${icon} $out/share/icons/hicolor/scalable/apps/godot.svg
       '';
+    };
+
+    overlays.default = final: prev: {
+      godot-flake = self.packages.${prev.system}.default;
     };
   };
 }
