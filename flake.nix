@@ -77,7 +77,7 @@
     };
 
     overlays.default = final: prev: {
-      godot-flake = self.packages.${prev.system}.default;
+      godot-flake = self.packages.${prev.stdenv.hostPlatform.system}.default;
     };
   };
 }
